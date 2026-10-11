@@ -125,7 +125,7 @@ function loadVideos() {
   $('gallery').innerHTML =
     '<div class="empty">영상 작품을 불러오는 중입니다…</div>';
 
-  if (WEB_APP_URL.startsWith('PASTE_')) {
+  if (FORM_VIDEO_URL.startsWith('PASTE_')) {
     $('gallery').innerHTML =
       '<div class="empty">전시관이 아직 서버와 연결되지 않았습니다.</div>';
     $('countText').textContent = '';
@@ -138,10 +138,9 @@ function loadVideos() {
   const s = document.createElement('script');
   s.id = 'jsonpScript';
 
-  s.src = WEB_APP_URL
-    + (WEB_APP_URL.includes('?') ? '&' : '?')
-    + 'action=list&callback=renderVideos&t='
-    + Date.now();
+  s.src = FORM_VIDEO_URL
+  + '?action=list&callback=renderVideos&t='
+  + Date.now();
 
   s.onerror = () => {
     $('gallery').innerHTML =
